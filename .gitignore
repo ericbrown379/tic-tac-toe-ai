@@ -1,0 +1,27 @@
+.env
+.env.local
+*.key
+# Compiled object files
+*.o
+
+# Compiled binary
+tictactoe
+
+# Build directories
+/build/
+/bin/
+/out/
+
+# Temporary files
+*.tmp
+*.log
+*.swp
+
+# Visual Studio Code settings
+.vscode/
+
+# Environment files
+.env
+
+# MacOS specific files
+.DS_Store
