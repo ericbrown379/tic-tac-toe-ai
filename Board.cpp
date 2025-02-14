@@ -1,44 +1,71 @@
 #include "Board.h"
 #include <iostream>
 
+// Typically you'll have an array of winning combos:
+static int WIN_COMBOS[8][3] = {
+    {0,1,2}, {3,4,5}, {6,7,8}, // rows
+    {0,3,6}, {1,4,7}, {2,5,8}, // columns
+    {0,4,8}, {2,4,6}           // diagonals
+};
+
 Board::Board() {
     reset();
 }
 
 void Board::reset() {
-    // Implement reset logic
+    for (int i = 0; i < 9; ++i) {
+        spaces[i] = ' ';
+    }
 }
 
 void Board::display() const {
-    // Implement display logic
+    std::cout << " " << spaces[0] << " | " << spaces[1] << " | " << spaces[2] << " \n";
+    std::cout << "---|---|---\n";
+    std::cout << " " << spaces[3] << " | " << spaces[4] << " | " << spaces[5] << " \n";
+    std::cout << "---|---|---\n";
+    std::cout << " " << spaces[6] << " | " << spaces[7] << " | " << spaces[8] << " \n";
 }
 
 bool Board::makeMove(int position, char marker) {
-    // Implement make move logic
-    return true; // Placeholder
+    if (isValidMove(position)) {
+        spaces[position] = marker;
+        return true;
+    }
+    return false;
 }
 
 bool Board::isValidMove(int position) const {
-    // Implement valid move check
-    return true; // Placeholder
+    return position >= 0 && position < 9 && spaces[position] == ' ';
 }
 
 char Board::getSpace(int position) const {
-    // Implement get space logic
-    return ' '; // Placeholder
+    return spaces[position];
 }
 
 std::string Board::getBoardState() const {
-    // Implement get board state logic
-    return ""; // Placeholder
+    // Example: "X O X ... "
+    std::string state;
+    for (int i = 0; i < 9; ++i) {
+        state += (spaces[i] == ' ' ? '.' : spaces[i]);
+    }
+    return state;
 }
 
 bool Board::checkWinCondition(char marker) const {
-    // Implement win condition check
-    return false; // Placeholder
+    // Check each winning combo
+    for (auto &combo : WIN_COMBOS) {
+        if (spaces[combo[0]] == marker &&
+            spaces[combo[1]] == marker &&
+            spaces[combo[2]] == marker) {
+            return true;
+        }
+    }
+    return false;
 }
 
 bool Board::isFull() const {
-    // Implement full board check
-    return false; // Placeholder
+    for (int i = 0; i < 9; i++) {
+        if (spaces[i] == ' ') return false;
+    }
+    return true;
 } 

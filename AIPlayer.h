@@ -15,8 +15,8 @@ private:
     double learningRate;
     std::string apiKey;
 
-    std::string makeOpenAIRequest(const std::string& board_state);
-    static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userp);
+    int minimax(Board board, int depth, bool isMaximizing);
+    char opponentMarker() const;
 
 public:
     AIPlayer(char marker, const std::string& key);

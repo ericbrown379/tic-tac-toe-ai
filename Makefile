@@ -1,10 +1,8 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall
-# Use the correct path for nlohmann-json
-CXXFLAGS += -I/opt/homebrew/opt/nlohmann-json/include
-LDFLAGS = -lcurl -L/opt/homebrew/lib
+CXXFLAGS = -std=c++17 -Wall -I"C:/path/to/SDL/include"
+LDFLAGS = -L"C:/path/to/SDL/lib" -lSDL2
 
-SRCS = main.cpp Game.cpp Board.cpp HumanPlayer.cpp AIPlayer.cpp Config.cpp
+SRCS = main.cpp Game.cpp Board.cpp HumanPlayer.cpp AIPlayer.cpp SDLGUI.cpp
 OBJS = $(SRCS:.cpp=.o)
 TARGET = tictactoe
 
